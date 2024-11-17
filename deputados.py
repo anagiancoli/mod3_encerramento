@@ -47,14 +47,15 @@ st.title(f'Deputad{letra}s do sexo ' + opcao)
 ocorrencias = df_filtroSexo['siglaUf'].value_counts()
 df_UF = pd.DataFrame( { 'siglaUf': ocorrencias.index, 'quantidade': ocorrencias.values} )
 
+col1, col2 = st.columns(2)
+
 # Total de homens (sexo == M) ->> Dataframe df_M
 total_masculino = df_M['id'].count()
-st.metric('Total Masculino', total_masculino)
+col1.metric('Total Masculino', total_masculino)
 
 # Total de mulheres (sexo == F) ->> Dataframe df_F
 total_feminino = df_F['id'].count()
-st.metric('Total Feminino', total_feminino)
-
+col2.metric('Total Feminino', total_feminino)
 
 st.write(f'Total de Deputad{letra}s do sexo ' + opcao)
 st.bar_chart(df_UF, x = 'siglaUf', y = 'quantidade', x_label='Siglas dos Estados', y_label=f'Quantidade de Deputad{letra}s')
