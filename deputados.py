@@ -34,7 +34,12 @@ opcao = st.selectbox( 'Qual o sexo?', df['sexo'].unique() )
 
 df_filtroSexo = df[df['sexo'] == opcao]
 
-st.title('Deputados do sexo ' + opcao)
+if opcao == "F":
+  letra = 'a'
+else:
+  letra = 'o'
+
+st.title(f'Deputad{letra}s do sexo ' + opcao)
 
 # Ocorrências totais
 # Procurando no chat GPT: Como calcular a quantidade de deputados por estado?
@@ -49,11 +54,6 @@ st.metric('Total Masculino', total_masculino)
 # Total de mulheres (sexo == F) ->> Dataframe df_F
 total_feminino = df_F['id'].count()
 st.metric('Total Feminino', total_feminino)
-
-if opcao == "F":
-  letra = 'a'
-else:
-  letra = 'o'
 
 
 st.write(f'Total de Deputad{letra}s do sexo ' + opcao)
