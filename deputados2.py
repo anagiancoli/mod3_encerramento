@@ -20,4 +20,4 @@ gastos = df_dep['valorLiquido'].sum()
 nomeDeputado = "Aécio Neves"
 
 st.title('Gastos do deputado ' + nomeDeputado)
-st.metric('Gastos do deputado', gastos)
+st.metric('Gastos do deputado R$ ', gastos)
