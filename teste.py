@@ -25,29 +25,6 @@ def get_profile_dataset(number_of_items: int = 20, seed: int = 0) -> pd.DataFram
     profile_df = pd.DataFrame(new_data)
     return profile_df
 
-@st.cache_data
-def get_profile_dataset(number_of_items: int = 20, seed: int = 0) -> pd.DataFrame:
-
-  new_data = []
-  fake = Faker()
-  np.random.seed(seed)
-  Faker.seed(seed)
-
-  for i in range(number_of_items):
-        profile = fake.profile()
-        new_data.append(
-            {
-                "name": profile["name"],
-                "daily_activity": np.random.rand(25),
-                "activity": np.random.randint(2, 90, size=12),
-            }
-        )
-
-  profile_df = pd.DataFrame(new_data)
-  return profile_df
-
-st.dataframe(get_profile_dataset())
-
 
 column_configuration = {
     "name": st.column_config.TextColumn(
@@ -69,24 +46,9 @@ column_configuration = {
     ),
 }
 
-st.header("All members")
-
-df = get_profile_dataset()
-
-event = st.dataframe(
-    df,
-    column_config=column_configuration,
-    use_container_width=True,
-    hide_index=True,
-    on_select="rerun",
-    selection_mode="multi-row",
-)
-
-
 select, compare = st.tabs(["Select members", "Compare selected"])
 
-
-with select: # Add select tab #############################################
+with select:
     st.header("All members")
 
     df = get_profile_dataset()
@@ -109,7 +71,7 @@ with select: # Add select tab #############################################
         use_container_width=True,
     )
 
-with compare: # Add compare tab ###########################################
+with compare:
     activity_df = {}
     for person in people:
         activity_df[df.iloc[person]["name"]] = df.iloc[person]["activity"]
