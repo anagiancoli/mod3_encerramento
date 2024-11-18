@@ -64,12 +64,6 @@ st.dataframe(df_filtroSexo)
 
 ####### QUESTAO 2
 
-# Importando as bibliotecas para download e criação de dataframe
-import requests as rq
-import pandas as pd
-import streamlit as st
-import requests as rq
-
 url_dep = 'https://dadosabertos.camara.leg.br/api/v2/deputados/74646/despesas?ordem=ASC&ordenarPor=ano'
 
 # Efetuando o download dados feminino
