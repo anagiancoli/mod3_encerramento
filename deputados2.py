@@ -16,7 +16,7 @@ deputados_json = resp_dep.json()
 df_dep = pd.DataFrame(deputados_json['dados'])
 
 # Calculando os gastos
-gastos = df['valorLiquido'].sum()
+gastos = df_dep['valorLiquido'].sum()
 nomeDeputado = "Aécio Neves"
 
 st.title('Gastos do deputado ' + nomeDeputado)
