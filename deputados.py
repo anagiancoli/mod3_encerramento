@@ -62,20 +62,3 @@ st.bar_chart(df_UF, x = 'siglaUf', y = 'quantidade', x_label='Siglas dos Estados
 
 st.dataframe(df_filtroSexo)
 
-####### QUESTAO 2
-
-url_dep = 'https://dadosabertos.camara.leg.br/api/v2/deputados/74646/despesas?ordem=ASC&ordenarPor=ano'
-
-# Efetuando o download dados feminino
-resp_dep = rq.get(url_dep)
-deputados_json = resp_dep.json()
-
-# Criando o dataframe 
-df_dep = pd.DataFrame(deputados_json['dados'])
-
-# Calculando os gastos
-gastos = df['valorLiquido'].sum()
-nomeDeputado = "Aécio Neves"
-
-st.title('Gastos do deputado ' + nomeDeputado)
-st.metric('Gastos do deputado', gastos)
